@@ -59,8 +59,8 @@ class EO_CSV_Import_Admin_Page{
 	public function register_page(){
 		
 		add_management_page(
-			__( 'Import Events', 'event-organiser-csv' ),
-			__( 'Import Events', 'event-organiser-csv' ),
+			__( 'Import / Export Events', 'event-organiser-csv' ),
+			__( 'Import / Export Events', 'event-organiser-csv' ),
 			'manage_options',
 			'eo-csv-import',
 			array( $this, 'render' )
@@ -126,10 +126,16 @@ class EO_CSV_Import_Admin_Page{
 				$headers = $_POST['column_map'];
 				$delimiter = $_POST['delimiter'];
 				$first_row_is_header = !empty( $_POST['first_row_is_header'] );
-				$import_venues = (bool) !empty( $_POST['import_venues'] );
-				$import_categories = (bool) !empty( $_POST['import_categories'] );
+				
+				$args = array_merge(array(
+						'import_new_event-venue'    => (bool) !empty( $_POST['import_new_event-venue'] ),
+						'import_new_event-category' => (bool) !empty( $_POST['import_new_event-category'] ),
+						'import_new_event-tag'      => (bool) !empty( $_POST['import_new_event-tag'] )
+					),
+					compact( 'headers', 'delimiter', 'first_row_is_header' )
+				);
 						
-				$this->import( $file, compact( 'headers', 'delimiter', 'first_row_is_header', 'import_venues', 'import_categories' ) );
+				$this->import( $file, $args );
 				
 				$this->display_feedback();
 				break;
@@ -178,6 +184,8 @@ class EO_CSV_Import_Admin_Page{
 	 * Import events
 	 */
 	function import( $file, $args = array() ) {
+		
+		$args = apply_filters( 'eventorganiser_csv_import_args', $args, $file );
 		
 		$map = array();
 		
@@ -231,10 +239,10 @@ class EO_CSV_Import_Admin_Page{
 				if( $found_venue ){
 					$venue_id = (int) $found_venue->term_id;
 						
-				}elseif( !empty( $args['import_venues'] ) ){
+				}elseif( !empty( $args['import_new_event-venue'] ) ){
 					$new_venue = eo_insert_venue( $event['event-venue'], $args );
 			
-					if( !is_wp_error( $new_venue ) && !$new_venue ){
+					if( !is_wp_error( $new_venue ) && $new_venue ){
 						$venue_id = (int) $new_venue['term_id'];
 					}
 					
@@ -248,31 +256,35 @@ class EO_CSV_Import_Admin_Page{
 			}
 			
 			
-			//Import categories
-			if( !empty( $event['event-category'] ) ){
+			//Import categories/tags
+			$taxonomies = array( 'event-category', 'event-tag' );
+			foreach( $taxonomies as $taxonomy ){
+
+				if( !empty( $event[$taxonomy] ) ){
 				
-				$cats = array();
+					$terms = array();
 				
-				foreach( $event['event-category'] as $category_name ){
+					foreach( $event[$taxonomy] as $term_name ){
 			
-					$found_cat = get_term_by( 'name', $category_name, 'event-category' );
+						$term_name = trim( $term_name );
+						$found_term = get_term_by( 'name', $term_name, $taxonomy );
 			
-					if( $found_cat ){
-						$cats[] = (int) $found_cat->term_id;
+						if( $found_term ){
+							$terms[] = (int) $found_term->term_id;
 						
-					}elseif( !empty( $args['import_categories'] ) ){
-						$new_cat = wp_insert_term( $category_name, 'event-category', array() );
+						}elseif( !empty( $args['import_new_'.$taxonomy] ) ){
+							$new_term = wp_insert_term( $term_name, $taxonomy, array() );
 			
-						if( !is_wp_error( $new_cat ) && !$new_cat ){
-							$cats[] = (int) $new_cat['term_id'];
+							if( !is_wp_error( $new_term ) && $new_term ){
+								$terms[] = (int) $new_term['term_id'];
+							}
 						}
-						
 					}
-				}
 				
-				wp_set_object_terms( $event_id, $cats, 'event-category' );
+					wp_set_object_terms( $event_id, $terms, $taxonomy );
+				}
 			}
-			
+
 			if( !empty( $event['meta'] ) ){
 				foreach( $event['meta'] as $meta_key => $value ){
 					if( !isset( $value ) || '' === $value ){
