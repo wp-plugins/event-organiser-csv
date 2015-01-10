@@ -3,8 +3,8 @@ Contributors:      stephenharris
 Donate link:       http://wp-event-organiser.com/
 Tags: CSV, Event, import
 Requires at least: 3.5.1
-Tested up to:      4.0.1
-Stable tag:        0.2.0
+Tested up to:      4.1.0
+Stable tag:        0.3.0
 License:           GPLv2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,7 +35,7 @@ Once installed, go to *Tools > Import Events*. Here you can export a CSV file or
 * All being well you should now see a preview of the CSV file, along with a drop-down option at the base of each column. If the preview looks wrong, try 
 selecting a different delimiter type (comma, tab, space) at the top.
 * If the first row of the CSV file is a header, select the option indicating this. The first row will then be ignored.
-* At the bottom of each column select what the column represents. The options are (not all a required):
+* At the bottom of each column select what the column represents. The options are (not all are required):
   - Title
   - Start (formatted in Y-m-d format, and also indicating time **only** if the event is not all-day)  
   - End (formatted as above)
@@ -47,6 +47,7 @@ selecting a different delimiter type (comma, tab, space) at the top.
   - Venue (Venue slug)
   - Categories (comma seperated list of category slugs) 
   - Tags (comma seperated list of tag slugs)
+  - [Any custom event taxonomies registered] (comma seperated list of slugs)
   - Include dates (comma seperated list of Y-m-d dates to include from the event's schedule)
   - Exclude dates (as above, but added to the event's schedule)
   - Post Meta (an option will appear to provide the meta-key)
@@ -75,7 +76,7 @@ Please note the limitations on importing venues discussed below.
 = Limitations =
 Current limitations apply. See the examples folder for an archetypal CSV file 
 
-* All dates are read using DateTime. While various formats are supported, Y-m-d (e.g. 2013-12-31) formats are **strongly** recommended
+* All dates are read using PHP's DateTime. While various formats are supported, Y-m-d (e.g. 2013-12-31) formats are **strongly** recommended
 * Starts dates must be provided in Y-m-d (e.g. 2013-12-31) for all day events and also include a time-component (e.g. 2013-12-31 11:30pm) for non-all-day events. There is no 
 prescribed format for the time but 24-hour time is recommended. You do not need to specify seconds.
 * Include/exclude dates should be given as comma-seperated list of dates in Y-m-d format.
@@ -83,12 +84,12 @@ prescribed format for the time but 24-hour time is recommended. You do not need 
 * It does not support venue meta-data (yet)
 
 *Please note that in theory all dates (other than the start date) can be given in any format, however, to 
-ensure dates are interpreted correctly it is strongly recommended to give dates in Y-m-d format. The start 
+ensure dates are interpreted correctly it is strongly recommended to give dates in Y-m-d (or Y-m-d H:i for non-all day events) format. The start 
 date must be in that format so that the importer can differentriate between all-day and non-all-day events.*
  
 
 = Future Features =
-
+* An "import preview" or "dry-run" so users can view how events will be imported.
 * Support venue meta data
 * Support category colours
 * Add filters for developers
@@ -113,6 +114,10 @@ date must be in that format so that the importer can differentriate between all-
 
 
 == Changelog ==
+
+= 0.3.0 =
+* Fix bug with parsing schedule meta data of weekly events.
+* Recognise custom event taxonomies in column selection.
 
 = 0.2.0 =
 * Refactored CSV parsing routine
