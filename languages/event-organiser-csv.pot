@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: event-organiser-csv 0.2.0\n"
+"Project-Id-Version: event-organiser-csv 0.3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-30 20:20+0000\n"
+"POT-Creation-Date: 2015-01-10 15:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,59 +17,59 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: event-organiser-csv.php:66 includes/class-eo-csv-events-export.php:106
+#: event-organiser-csv.php:65 includes/class-eo-csv-events-export.php:106
 msgid "Title"
 msgstr ""
 
-#: event-organiser-csv.php:67
+#: event-organiser-csv.php:66
 msgid "Start"
 msgstr ""
 
-#: event-organiser-csv.php:68
+#: event-organiser-csv.php:67
 msgid "End"
 msgstr ""
 
-#: event-organiser-csv.php:69
+#: event-organiser-csv.php:68
 msgid "Recur until"
 msgstr ""
 
-#: event-organiser-csv.php:70 includes/class-eo-csv-events-export.php:117
+#: event-organiser-csv.php:69 includes/class-eo-csv-events-export.php:117
 msgid "Recurrence schedule"
 msgstr ""
 
-#: event-organiser-csv.php:71 includes/class-eo-csv-events-export.php:119
+#: event-organiser-csv.php:70 includes/class-eo-csv-events-export.php:119
 msgid "Recurrence frequency"
 msgstr ""
 
-#: event-organiser-csv.php:72 includes/class-eo-csv-events-export.php:118
+#: event-organiser-csv.php:71 includes/class-eo-csv-events-export.php:118
 msgid "Schedule meta"
 msgstr ""
 
-#: event-organiser-csv.php:73 includes/class-eo-csv-events-export.php:111
+#: event-organiser-csv.php:72 includes/class-eo-csv-events-export.php:111
 msgid "Content"
 msgstr ""
 
-#: event-organiser-csv.php:74 includes/class-eo-csv-events-export.php:113
+#: event-organiser-csv.php:84 includes/class-eo-csv-events-export.php:113
 msgid "Venue"
 msgstr ""
 
-#: event-organiser-csv.php:75 includes/class-eo-csv-events-export.php:114
+#: event-organiser-csv.php:85 includes/class-eo-csv-events-export.php:114
 msgid "Category"
 msgstr ""
 
-#: event-organiser-csv.php:76 includes/class-eo-csv-events-export.php:115
+#: event-organiser-csv.php:86 includes/class-eo-csv-events-export.php:115
 msgid "Tags"
 msgstr ""
 
-#: event-organiser-csv.php:77 includes/class-eo-csv-events-export.php:121
+#: event-organiser-csv.php:87 includes/class-eo-csv-events-export.php:121
 msgid "Include dates"
 msgstr ""
 
-#: event-organiser-csv.php:78 includes/class-eo-csv-events-export.php:122
+#: event-organiser-csv.php:88 includes/class-eo-csv-events-export.php:122
 msgid "Exclude dates"
 msgstr ""
 
-#: event-organiser-csv.php:79
+#: event-organiser-csv.php:89
 msgid "Post Meta"
 msgstr ""
 
