@@ -2,8 +2,8 @@
 /**
  * Plugin Name: Event Organiser CSV
  * Plugin URI:  http://wp-event-organiser.com/
- * Description: Import and Export events via CSV 
- * Version:     0.3.1
+ * Description: Import and Export events via CSV
+ * Version:     0.3.2
  * Author:      Stephen Harris
  * Author URI:  http://stephenharris.info
  * License:     GPLv2+
@@ -34,7 +34,7 @@
  * and code has been used from that to kick-start this plug-in.
  */
 
-define( 'EVENT_ORGANISER_CSV_VERSION', '0.3.1' );
+define( 'EVENT_ORGANISER_CSV_VERSION', '0.3.2' );
 define( 'EVENT_ORGANISER_CSV_URL',     plugin_dir_url( __FILE__ ) );
 define( 'EVENT_ORGANISER_CSV_DIR',    dirname( __FILE__ ) . '/' );
 
@@ -88,13 +88,14 @@ function eventorganisercsv_init() {
 			'exclude'        => __( 'Exclude dates', 'event-organiser-csv' ),
 			'post_meta'      => __( 'Post Meta', 'event-organiser-csv' ),
 		);
-		
-		
-		
-		$columns = 	apply_filters( 'eventorganiser_csv_import_columns', $columns );
-		
+
+		$columns = apply_filters( 'eventorganiser_csv_import_columns', $columns );
+
 		wp_localize_script( 'eo_csv_admin', 'eo_csv', array(
-			'columns' => $columns,		
+			'columns' => $columns,
+			'i18n'    => array(
+				'select_start_column' => __( 'You have not selected a start date column. Please use the dropdowns to identify each column.', 'event-organiser-csv' )
+			)
 		));
 	}
 }

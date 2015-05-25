@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: event-organiser-csv 0.3.1\n"
+"Project-Id-Version: event-organiser-csv 0.3.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-18 10:53+0000\n"
+"POT-Creation-Date: 2015-05-25 13:46+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -73,6 +73,12 @@ msgstr ""
 msgid "Post Meta"
 msgstr ""
 
+#: event-organiser-csv.php:97
+msgid ""
+"You have not selected a start date column. Please use the dropdowns to "
+"identify each column."
+msgstr ""
+
 #: includes/admin.php:62 includes/admin.php:63
 msgid "Import / Export Events"
 msgstr ""
@@ -104,31 +110,31 @@ msgid ""
 "this was caused by a permissions problem."
 msgstr ""
 
-#: includes/admin.php:363
+#: includes/admin.php:367
 msgid "Comma"
 msgstr ""
 
-#: includes/admin.php:364
+#: includes/admin.php:368
 msgid "Tab"
 msgstr ""
 
-#: includes/admin.php:365
+#: includes/admin.php:369
 msgid "Space"
 msgstr ""
 
-#: includes/admin.php:366
+#: includes/admin.php:370
 msgid "Semicolon"
 msgstr ""
 
-#: includes/admin.php:372
+#: includes/admin.php:376
 msgid "First row is header"
 msgstr ""
 
-#: includes/admin.php:377
+#: includes/admin.php:381
 msgid "You must have javascript enabled for the importer to work."
 msgstr ""
 
-#: includes/admin.php:389
+#: includes/admin.php:393
 msgid "Import"
 msgstr ""
 
